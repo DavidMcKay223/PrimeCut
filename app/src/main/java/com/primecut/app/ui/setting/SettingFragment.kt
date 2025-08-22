@@ -50,7 +50,7 @@ class SettingFragment : DialogFragment() {
         db = Room.databaseBuilder(
             requireContext(),
             AppDatabase::class.java,
-            "primecut_db"
+            "primecut.db"
         ).build()
 
         // Button click: load JSON from assets & insert into DB

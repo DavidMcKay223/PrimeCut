@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Dialog
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class SettingFragment : DialogFragment() {
 
@@ -43,22 +45,27 @@ class SettingFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         db = AppDatabase.getInstance(requireContext())
 
-        return MaterialAlertDialogBuilder(requireContext())
+        val dialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle("Sync Settings")
             .setMessage("Update the database to latest files?")
-            .setPositiveButton("Sync") { _, _ ->
-                lifecycleScope.launch {
-                    withContext(Dispatchers.IO) {
-                        syncFoodItems()  // runs on background thread
-                    }
-
-                    dismiss()
-                }
-            }
+            .setPositiveButton("Sync", null)
             .setNegativeButton("Close") { _, _ ->
                 dismiss()
             }
             .create()
+
+        dialog.setOnShowListener {
+            val button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            button.setOnClickListener {
+                lifecycleScope.launch {
+                    syncFoodItems()
+                    Toast.makeText(requireContext(), "Sync Complete", Toast.LENGTH_SHORT).show()
+                    dismiss()
+                }
+            }
+        }
+
+        return dialog
     }
 
     private suspend fun syncFoodItems() {

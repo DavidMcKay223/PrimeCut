@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.primecut.app.databinding.FragmentHomeBinding
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+
 
 class HomeFragment : Fragment() {
 
@@ -30,11 +31,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-
         // Learning Here Delete Later
         val homeContainer = LinearLayout(requireContext())
         homeContainer.orientation = LinearLayout.VERTICAL
@@ -44,19 +40,22 @@ class HomeFragment : Fragment() {
         )
         homeContainer.setPadding(16, 16, 16, 16)
 
-        val nameLabel = TextView(requireContext())
-        nameLabel.text = "Name"
-        val nameInput = EditText(requireContext())
+        val nameInputLayout = TextInputLayout(requireContext())
+        nameInputLayout.hint = "Name"
 
-        val ageLabel = TextView(requireContext())
-        ageLabel.text = "Age"
-        val ageInput = EditText(requireContext())
+        val nameInput = TextInputEditText(requireContext())
+        nameInputLayout.addView(nameInput)
+
+        val ageInputLayout = TextInputLayout(requireContext())
+        ageInputLayout.hint = "Age"
+
+        val ageInput = TextInputEditText(requireContext())
         ageInput.inputType = android.text.InputType.TYPE_CLASS_NUMBER
 
-        homeContainer.addView(nameLabel)
-        homeContainer.addView(nameInput)
-        homeContainer.addView(ageLabel)
-        homeContainer.addView(ageInput)
+        ageInputLayout.addView(ageInput)
+
+        homeContainer.addView(nameInputLayout) // TextInputLayout containing TextInputEditText
+        homeContainer.addView(ageInputLayout) // TextInputLayout containing TextInputEditText for age
 
         (root as ViewGroup).addView(homeContainer)
         // End Learn

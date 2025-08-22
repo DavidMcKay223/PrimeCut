@@ -1,0 +1,28 @@
+[
+  {
+    "recipeName": "Grilled Chicken Breast",
+    "brandType": "Generic",
+    "groupName": "Protein",
+    "servings": 1,
+    "caloriesPerServing": 165,
+    "measurementServings": 100,
+    "measurementType": "grams",
+    "protein": 31,
+    "carbs": 0,
+    "fats": 3.6,
+    "fiber": 0
+  },
+  {
+    "recipeName": "Oatmeal",
+    "brandType": "Generic",
+    "groupName": "Carbs",
+    "servings": 1,
+    "caloriesPerServing": 150,
+    "measurementServings": 40,
+    "measurementType": "grams",
+    "protein": 5,
+    "carbs": 27,
+    "fats": 3,
+    "fiber": 4
+  }
+]

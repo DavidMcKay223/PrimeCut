@@ -12,6 +12,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.primecut.app.databinding.ActivityMainBinding
+import com.primecut.app.ui.setting.SettingFragment
+import android.view.MenuItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,5 +56,16 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> { // This ID must match the ID in your menu XML
+                val settingsFragment = SettingFragment() // Create an instance of your DialogFragment
+                settingsFragment.show(supportFragmentManager, "setting_fragment") // Show the dialog
+                true // Indicate that the event was handled
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

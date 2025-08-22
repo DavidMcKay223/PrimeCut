@@ -40,4 +40,9 @@
     <style name="Theme.PrimeCut.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="Theme.PrimeCut.PopupOverlay" parent="ThemeOverlay.Material3.Light" />
+
+    <style name="ThemeOverlay.PrimeCut.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
 </resources>

@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
 import com.primecut.app.data.database.AppDatabase
 import com.primecut.app.data.model.FoodItem
 import com.primecut.app.databinding.FragmentSettingBinding
@@ -16,8 +13,8 @@ import com.primecut.app.util.loadFoodItemsFromAssets
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.IOException
-import android.util.Log
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import android.app.Dialog
 
 class SettingFragment : DialogFragment() {
 
@@ -43,22 +40,25 @@ class SettingFragment : DialogFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        db = AppDatabase.getInstance(requireContext())
 
-        // Initialize Room database
-        db = Room.databaseBuilder(
-            requireContext(),
-            AppDatabase::class.java,
-            "primecut.db"
-        ).build()
+        return MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Sync Settings")
+            .setMessage("Update the database to latest files?")
+            .setPositiveButton("Sync") { _, _ ->
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        syncFoodItems()  // runs on background thread
+                    }
 
-        // Button click: load JSON from assets & insert into DB
-        binding.btnSyncData.setOnClickListener {
-            lifecycleScope.launch {
-                syncFoodItems()
+                    dismiss()
+                }
             }
-        }
+            .setNegativeButton("Close") { _, _ ->
+                dismiss()
+            }
+            .create()
     }
 
     private suspend fun syncFoodItems() {
@@ -66,7 +66,6 @@ class SettingFragment : DialogFragment() {
             val items: List<FoodItem> = loadFoodItemsFromAssets(requireContext())
             items.forEach { db.foodItemDao().insert(it) }
         }
-        Toast.makeText(requireContext(), "Database synced!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

@@ -24,5 +24,18 @@
     "carbs": 27,
     "fats": 3,
     "fiber": 4
+  },
+  {
+    "recipeName": "Greek Yogurt",
+    "brandType": "Generic",
+    "groupName": "Fats",
+    "servings": 1,
+    "caloriesPerServing": 250,
+    "measurementServings": 40,
+    "measurementType": "grams",
+    "protein": 8,
+    "carbs": 35,
+    "fats": 3,
+    "fiber": 0
   }
 ]

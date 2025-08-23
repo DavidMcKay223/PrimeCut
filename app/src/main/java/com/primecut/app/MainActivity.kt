@@ -65,6 +65,11 @@ class MainActivity : AppCompatActivity() {
                 settingsFragment.show(supportFragmentManager, "setting_fragment") // Show the dialog
                 true // Indicate that the event was handled
             }
+            R.id.action_userprofile -> {
+                val navController = findNavController(R.id.nav_host_fragment_content_main)
+                navController.navigate(R.id.nav_userProfile)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

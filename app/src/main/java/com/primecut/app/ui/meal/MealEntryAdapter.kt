@@ -1,4 +1,4 @@
-package com.primecut.app.ui.component
+package com.primecut.app.ui.meal
 
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.primecut.app.R
 import com.primecut.app.data.model.MealEntry
 import com.primecut.app.databinding.MealEntryCardBinding
 

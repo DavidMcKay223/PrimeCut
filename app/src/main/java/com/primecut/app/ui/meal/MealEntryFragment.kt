@@ -14,8 +14,6 @@ import com.primecut.app.data.model.FoodItem
 import com.primecut.app.data.model.MealEntry
 import com.primecut.app.databinding.FragmentMealEntryBinding
 import com.primecut.app.ui.component.FoodItemViewModel
-import com.primecut.app.ui.component.MealEntryAdapter
-import com.primecut.app.ui.component.MealEntryViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import java.time.Instant

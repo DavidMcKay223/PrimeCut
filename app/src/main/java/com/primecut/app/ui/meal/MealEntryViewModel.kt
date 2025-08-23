@@ -1,4 +1,4 @@
-package com.primecut.app.ui.component
+package com.primecut.app.ui.meal
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

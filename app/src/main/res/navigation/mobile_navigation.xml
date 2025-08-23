@@ -22,4 +22,9 @@
         android:name="com.primecut.app.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment android:id="@+id/nav_mealEntry"
+        android:name="com.primecut.app.ui.meal.MealEntryFragment"
+        android:label="@string/menu_meal_entry"
+        tools:layout="@layout/fragment_meal_entry" />
 </navigation>

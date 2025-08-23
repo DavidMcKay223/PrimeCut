@@ -17,13 +17,15 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Dialog
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.primecut.app.ui.component.FoodItemViewModel
+import androidx.lifecycle.ViewModelProvider
 
 class SettingFragment : DialogFragment() {
 
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var db: AppDatabase
+    private lateinit var viewModel: FoodItemViewModel
 
     override fun onStart() {
         super.onStart()
@@ -43,7 +45,7 @@ class SettingFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        db = AppDatabase.getInstance(requireContext())
+        viewModel = ViewModelProvider(requireActivity()).get(FoodItemViewModel::class.java)
 
         val dialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle("Sync Settings")
@@ -58,21 +60,18 @@ class SettingFragment : DialogFragment() {
             val button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             button.setOnClickListener {
                 lifecycleScope.launch {
-                    syncFoodItems()
-                    Toast.makeText(requireContext(), "Sync Complete", Toast.LENGTH_SHORT).show()
-                    dismiss()
+                    val items = loadFoodItemsFromAssets(requireContext())
+                    viewModel.syncFoodItemsFromAssets(items) {
+                        requireActivity().runOnUiThread {
+                            Toast.makeText(requireContext(), "Sync Complete", Toast.LENGTH_SHORT).show()
+                            dismiss()
+                        }
+                    }
                 }
             }
         }
 
         return dialog
-    }
-
-    private suspend fun syncFoodItems() {
-        withContext(Dispatchers.IO) {
-            val items: List<FoodItem> = loadFoodItemsFromAssets(requireContext())
-            items.forEach { db.foodItemDao().insert(it) }
-        }
     }
 
     override fun onDestroyView() {

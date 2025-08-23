@@ -6,14 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.primecut.app.data.dao.FoodItemDao
 import com.primecut.app.data.model.FoodItem
+import com.primecut.app.data.dao.MealEntryDao
+import com.primecut.app.data.model.MealEntry
 
 @Database(
-    entities = [FoodItem::class],
+    entities = [FoodItem::class, MealEntry::class],
     version = 1,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodItemDao(): FoodItemDao
+    abstract fun mealEntryDao(): MealEntryDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
@@ -24,7 +27,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "primecut.db"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

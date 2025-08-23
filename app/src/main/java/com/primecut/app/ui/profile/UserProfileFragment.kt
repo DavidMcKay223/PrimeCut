@@ -77,6 +77,14 @@ class UserProfileFragment : Fragment() {
             binding.activitySpinner.setText(profile.activityLevel, false)
             binding.goalSpinner.setText(profile.goalType, false)
             binding.dietSpinner.setText(profile.dietType.name, false)
+
+            binding.goalsTextView.text = """
+                    Calories: ${profile.calorieGoal} cal
+                    Protein: ${profile.proteinGoal} g
+                    Carbs: ${profile.carbsGoal} g
+                    Fat: ${profile.fatGoal} g
+                    Fiber: ${profile.fiberGoal} g
+                """.trimIndent()
         }
     }
 

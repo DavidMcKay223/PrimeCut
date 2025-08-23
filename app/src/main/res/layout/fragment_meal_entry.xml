@@ -16,7 +16,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date"
+            android:hint="@string/meal_entry_hint_date"
             app:endIconMode="custom">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -31,34 +31,35 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Meal Type"
+            android:hint="@string/meal_entry_hint_meal_type"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
             <AutoCompleteTextView
                 android:id="@+id/mealTypeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"/>
+                android:inputType="none"
+                android:hint="@string/meal_entry_hint_meal_type"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Food Item"
+            android:hint="@string/meal_entry_hint_food_item"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
             <AutoCompleteTextView
                 android:id="@+id/foodItemInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Food Item"
+                android:hint="@string/meal_entry_hint_food_item"
                 style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Portion">
+            android:hint="@string/meal_entry_hint_portion">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/portionInput"
@@ -71,7 +72,7 @@
             android:id="@+id/addMealButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Meal"
+            android:text="@string/meal_entry_button_add_meal"
             style="@style/Widget.Material3.Button"/>
 
         <TextView
@@ -83,7 +84,7 @@
             android:layout_gravity="center"
             android:visibility="gone"
             android:paddingTop="16dp"
-            android:textColor="?attr/colorOnSurfaceVariant"/>
+            android:textColor="@color/offWhite"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

@@ -2,8 +2,8 @@
     <string name="app_name">PrimeCut</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Prime Cut</string>
+    <string name="nav_header_subtitle">A cut above!</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -15,4 +15,11 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="no_data_text">No Items Found.</string>
+
+    <string name="meal_entry_hint_date">Date</string>
+    <string name="meal_entry_hint_meal_type">Meal Type</string>
+    <string name="meal_entry_hint_food_item">Food Item</string>
+    <string name="meal_entry_hint_portion">Portion</string>
+    <string name="meal_entry_button_add_meal">Add Meal</string>
+    <string name="delete_meal">Delete Meal</string>
 </resources>

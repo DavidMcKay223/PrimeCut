@@ -42,4 +42,14 @@ class MealEntryViewModel(app: Application) : AndroidViewModel(app) {
             }
         }
     }
+
+    fun deleteMealEntry(entry: MealEntry, onComplete: (() -> Unit)? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            db.mealEntryDao().delete(entry.id)
+            refreshMealEntries(entry.date)
+            onComplete?.let {
+                withContext(Dispatchers.Main) { it() }
+            }
+        }
+    }
 }

@@ -15,6 +15,12 @@ import com.primecut.app.databinding.MealEntryCardBinding
 class MealEntryAdapter(private var items: List<MealEntry>) :
     RecyclerView.Adapter<MealEntryAdapter.MealViewHolder>() {
 
+    private var deleteCallback: ((MealEntry) -> Unit)? = null
+
+    fun setOnDeleteClickListener(callback: (MealEntry) -> Unit) {
+        deleteCallback = callback
+    }
+
     inner class MealViewHolder(val binding: MealEntryCardBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -31,7 +37,11 @@ class MealEntryAdapter(private var items: List<MealEntry>) :
         holder.binding.apply {
             mealTitle.text = meal.mealName
             mealInfo.text =
-                "${meal.portionEaten} x ${meal.measurementType ?: "portion"} — ${meal.calories} cal"
+                "${meal.portionEaten} - (${meal.measurementServings} x ${meal.measurementType}) — ${meal.calories} cal"
+
+            deleteButton.setOnClickListener {
+                deleteCallback?.invoke(meal)
+            }
 
             macroContainer.removeAllViews()
 

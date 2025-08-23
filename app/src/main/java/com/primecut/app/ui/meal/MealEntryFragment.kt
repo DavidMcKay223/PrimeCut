@@ -59,9 +59,22 @@ class MealEntryFragment : Fragment() {
         val mealTypeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, mealTypes)
         binding.mealTypeSpinner.setAdapter(mealTypeAdapter)
 
+        val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val defaultMealType = when (hour) {
+            in 6..10 -> "Breakfast"
+            in 11..15 -> "Lunch"
+            in 16..19 -> "Dinner"
+            else -> "Snack"
+        }
+        binding.mealTypeSpinner.setText(defaultMealType, false)
+
         binding.dateInput.setText(selectedDate)
 
-        adapter = MealEntryAdapter(emptyList())
+        adapter = MealEntryAdapter(emptyList()).apply {
+            setOnDeleteClickListener { meal ->
+                mealEntryViewModel.deleteMealEntry(meal)
+            }
+        }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
     }

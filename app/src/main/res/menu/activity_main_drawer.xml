@@ -20,6 +20,9 @@
             android:id="@+id/nav_mealEntry"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_meal_entry" />
-            />
+        <item
+            android:id="@+id/nav_profileWeightLog"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_profileWeightLog" />
     </group>
 </menu>

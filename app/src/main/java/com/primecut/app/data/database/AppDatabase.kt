@@ -10,16 +10,19 @@ import com.primecut.app.data.dao.MealEntryDao
 import com.primecut.app.data.dao.UserProfileDao
 import com.primecut.app.data.model.MealEntry
 import com.primecut.app.data.model.UserProfile
+import com.primecut.app.data.model.WeightLog
+import com.primecut.app.data.dao.WeightLogDao
 
 @Database(
-    entities = [FoodItem::class, MealEntry::class, UserProfile::class],
-    version = 2,
+    entities = [FoodItem::class, MealEntry::class, UserProfile::class, WeightLog::class],
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodItemDao(): FoodItemDao
     abstract fun mealEntryDao(): MealEntryDao
     abstract fun userProfileDao(): UserProfileDao
+    abstract fun weightLogDao(): WeightLogDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

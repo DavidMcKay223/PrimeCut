@@ -32,4 +32,9 @@
         android:name="com.primecut.app.ui.profile.UserProfileFragment"
         android:label="@string/menu_user_profile"
         tools:layout="@layout/fragment_user_profile" />
+
+    <fragment android:id="@+id/nav_profileWeightLog"
+        android:name="com.primecut.app.ui.profile.WeightLogFragment"
+        android:label="@string/menu_profileWeightLog"
+        tools:layout="@layout/fragment_weight_log" />
 </navigation>
